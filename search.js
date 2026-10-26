@@ -7,6 +7,7 @@ async function loadSpells() {
 
   document.getElementById("search").addEventListener("input", () => render(spells));
   document.getElementById("category-filter").addEventListener("change", () => render(spells));
+  document.getElementById("typeFilter").addEventListener("change", () => render(spells));
 }
 
 /* ▼ 分類を JSON から自動生成 ▼ */
@@ -30,7 +31,7 @@ function generateCategoryList(spells) {
 function render(spells) {
   const q = document.getElementById("search").value.toLowerCase();
   const category = document.getElementById("category-filter").value;
-  const type = document.getElementById("type-filter").value;
+  const type = document.getElementById("typeFilter").value;
 
   const filtered = spells.filter(spell =>
     (spell.name.toLowerCase().includes(q) ||
