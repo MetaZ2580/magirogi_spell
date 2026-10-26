@@ -30,11 +30,13 @@ function generateCategoryList(spells) {
 function render(spells) {
   const q = document.getElementById("search").value.toLowerCase();
   const category = document.getElementById("category-filter").value;
+  const type = document.getElementById("type-filter").value;
 
   const filtered = spells.filter(spell =>
     (spell.name.toLowerCase().includes(q) ||
      spell.effect.toLowerCase().includes(q)) &&
-    (!category || spell.category.includes(category))
+    (!category || spell.category.includes(category)) &&
+    (!type || spell.type === type)
   );
 
   document.getElementById("spell-list").innerHTML =
