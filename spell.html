@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>魔法詳細</title>
+  <link rel="stylesheet" href="card.css">
+</head>
+<body>
+
+  <h1 id="title">魔法詳細</h1>
+  <div id="spell"></div>
+
+  <script>
+    async function loadSpell() {
+      const params = new URLSearchParams(location.search);
+      const name = params.get("name");
+
+      const res = await fetch("spells.json");
+      const spells = await res.json();
+
+      const spell = spells.find(s => s.name === name);
+
+      if (!spell) {
+        document.getElementById("spell").innerHTML = "<p>魔法が見つかりません。</p>";
+        return;
+      }
+
+      document.getElementById("title").textContent = spell.name;
+
+      document.getElementById("spell").innerHTML = `
+        <div class="card">
+
+          <div class="info-block">
+            <div class="card-title">${spell.name}</div>
+
+            ${spell.category.map(cat => `<span class="tag">${cat}</span>`).join("")}
+
+            <div class="info-label">タイプ</div>
+            <div>${spell.type}</div>
+
+            <div class="info-label">指定特技</div>
+            <div>${spell.skill}</div>
+
+            <div class="info-label">目標</div>
+            <div>${spell.target}</div>
+
+            <div class="info-label">コスト</div>
+            <div>${spell.cost}</div>
+          </div>
+
+          <div>
+            <div class="effect-box">${spell.effect}</div>
+
+            <div class="chant">${spell.chant}</div>
+
+            <div class="summary">${spell.summary}</div>
+          </div>
+
+        </div>
+
+        <p><a href="index.html">← 検索ページに戻る</a></p>
+      `;
+    }
+
+    loadSpell();
+  </script>
+
+</body>
+</html>
