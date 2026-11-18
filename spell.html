@@ -13,10 +13,16 @@
   <script>
     async function loadSpell() {
       const params = new URLSearchParams(location.search);
-      const name = params.get("name");
+     const name = params.get("name");
+const mode = params.get("mode");
 
-      const res = await fetch("spells.json");
-      const spells = await res.json();
+const file =
+  mode === "gm"
+    ? "gm-spells.json"
+    : "spells.json";
+
+const res = await fetch(file);
+const spells = await res.json();
 
       const spell = spells.find(s => s.name === name);
 
