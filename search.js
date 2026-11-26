@@ -24,6 +24,8 @@ else {
   title.textContent = "マギカロギア魔法検索";
 }
 
+}
+
 function generateCategoryList(spells) {
   const select = document.getElementById("category-filter");
   const categories = new Set();
