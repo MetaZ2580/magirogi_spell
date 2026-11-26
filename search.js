@@ -14,11 +14,14 @@ async function loadSpells() {
 
   const title = document.getElementById("title");
 
-  if (currentMode === "gm") {
-    title.textContent = "マギカロギアGM魔法検索";
-  } else {
-    title.textContent = "マギカロギア魔法検索";
-  }
+ if (currentMode === "gm") {
+  title.textContent = "マギカロギアGM魔法検索";
+}
+else if (currentMode === "expansion") {
+  title.textContent = "マギカロギア拡張魔法検索";
+}
+else {
+  title.textContent = "マギカロギア魔法検索";
 }
 
 function generateCategoryList(spells) {
