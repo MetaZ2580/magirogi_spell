@@ -19,7 +19,9 @@ const mode = params.get("mode");
 const file =
   mode === "gm"
     ? "gm-spells.json"
-    : "spells.json";
+    : mode === "expansion"
+      ? "expansion-spells.json"
+      : "spells.json";
 
 const res = await fetch(file);
 const spells = await res.json();
