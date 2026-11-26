@@ -86,4 +86,11 @@ document.getElementById("gmMode")
     loadSpells();
   });
 
+document.getElementById("expansionMode")
+  .addEventListener("click", () => {
+    currentMode = "expansion";
+    currentFile = "expansion-spells.json";
+    loadSpells();
+  });
+
 loadSpells();
